@@ -61,10 +61,12 @@
 
     <section class="card">
       <h3 class="forecast-title">7-day outlook</h3>
+      <!-- Each row is `DayForecast.date` (YYYY-MM-DD); Day + Date columns are formatted in the component. -->
       <div class="table-wrap">
         <table class="forecast">
           <thead>
             <tr>
+              <th>Day</th>
               <th>Date</th>
               <th>High</th>
               <th>Low</th>
@@ -75,7 +77,8 @@
           <tbody>
             @for (d of w.forecast; track d.date) {
               <tr>
-                <td>{{ d.date }}</td>
+                <td>{{ formatForecastWeekday(d.date) }}</td>
+                <td>{{ formatForecastCalendarDate(d.date) }}</td>
                 <td>{{ formatTemp(d.highF) }}</td>
                 <td>{{ formatTemp(d.lowF) }}</td>
                 <td>{{ formatPct(d.humidityPct) }}</td>

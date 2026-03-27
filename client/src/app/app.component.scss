@@ -165,6 +165,14 @@
     letter-spacing: 0.04em;
   }
 
+  // Weekday column: no wrap, minimal width so the table stays easy to scan on small screens.
+  th:first-child,
+  td:first-child {
+    white-space: nowrap;
+    width: 1%;
+    padding-right: 0.35rem;
+  }
+
   tbody tr:last-child td {
     border-bottom: none;
   }
