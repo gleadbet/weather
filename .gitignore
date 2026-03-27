@@ -4,13 +4,21 @@ node_modules/
 # Builds
 dist/
 out-tsc/
+tmp/
+coverage/
 
 # Angular
 .angular/
+/.ng/
 
 # Logs and debug
 *.log
 npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# TypeScript
+*.tsbuildinfo
 
 # Environment (secrets)
 .env
