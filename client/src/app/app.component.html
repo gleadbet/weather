@@ -1,0 +1,90 @@
+<div class="page">
+  <header class="header">
+    <h1>Weather</h1>
+    <p class="sub">
+      City (add state if needed: Richmond IN, Richmond Virginia) or US ZIP · High
+      / low · Humidity · Rain chance
+    </p>
+  </header>
+
+  <section class="card search-card">
+    <label class="label" for="loc">Location</label>
+    <div class="row">
+      <input
+        id="loc"
+        type="text"
+        class="input"
+        placeholder="e.g. 23231, Richmond IN, Seattle"
+        [(ngModel)]="locationInput"
+        (keydown.enter)="search()"
+      />
+      <button
+        type="button"
+        class="btn"
+        (click)="search()"
+        [disabled]="loading"
+      >
+        {{ loading ? "Loading…" : "Get weather" }}
+      </button>
+    </div>
+    @if (error) {
+      <p class="err">{{ error }}</p>
+    }
+  </section>
+
+  @if (result; as w) {
+    <section class="card">
+      <h2 class="place">{{ w.location.label }}</h2>
+      <p class="meta">{{ w.today.date }} · {{ w.attribution }}</p>
+
+      <div class="metrics">
+        <div class="metric">
+          <span class="metric-label">High</span>
+          <span class="metric-value">{{ formatTemp(w.today.highF) }}</span>
+        </div>
+        <div class="metric">
+          <span class="metric-label">Low</span>
+          <span class="metric-value">{{ formatTemp(w.today.lowF) }}</span>
+        </div>
+        <div class="metric">
+          <span class="metric-label">Humidity</span>
+          <span class="metric-value">{{ formatPct(w.today.humidityPct) }}</span>
+        </div>
+        <div class="metric">
+          <span class="metric-label">Rain chance</span>
+          <span class="metric-value">{{
+            formatPct(w.today.rainChancePct)
+          }}</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h3 class="forecast-title">7-day outlook</h3>
+      <div class="table-wrap">
+        <table class="forecast">
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>High</th>
+              <th>Low</th>
+              <th>Humidity</th>
+              <th>Rain</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (d of w.forecast; track d.date) {
+              <tr>
+                <td>{{ d.date }}</td>
+                <td>{{ formatTemp(d.highF) }}</td>
+                <td>{{ formatTemp(d.lowF) }}</td>
+                <td>{{ formatPct(d.humidityPct) }}</td>
+                <td>{{ formatPct(d.rainChancePct) }}</td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    </section>
+  }
+</div>

@@ -1,0 +1,30 @@
+# Dependencies
+node_modules/
+
+# Builds
+dist/
+out-tsc/
+
+# Angular
+.angular/
+
+# Logs and debug
+*.log
+npm-debug.log*
+
+# Environment (secrets)
+.env
+.env.*
+!.env.example
+
+# OS
+Thumbs.db
+Desktop.ini
+
+# IDE / editor
+.idea/
+.vscode/*
+!.vscode/extensions.json
+
+# Cursor debug session logs only (remove next line if you want to commit .cursor/rules)
+.cursor/debug*.log
